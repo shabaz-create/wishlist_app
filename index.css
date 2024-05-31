@@ -6,19 +6,18 @@ main{
 }
 input, button{
     font-size:20px;
-    border-radius: 10px;
+    border-radius: 7px;
 }
 
 button:hover{
-    background-color: cyan;
+    background-color:black;
+    color:white;
 }
 
 #delete-button{
     font-size :15px;
 }
-#delete-button:hover{
-    background-color: red;
-}
+
 #wishlist-container{
     border:2px solid black;
     margin-top:50px;
@@ -28,6 +27,7 @@ button:hover{
     border-radius: 20px;
     padding:20px;
     box-shadow: -12px 8px 15px ;
+    line-height: 40px;
     
 }
 #wishlist-input:focus{
@@ -39,4 +39,8 @@ label{
 }
 .strike{
     text-decoration:line-through;
+}
+
+input[type="checkbox"] {
+    filter: sepia(100%) brightness(80%) hue-rotate(170deg) saturate(70%) contrast(300%);
 }

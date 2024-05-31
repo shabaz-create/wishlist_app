@@ -2,7 +2,9 @@ const add=document.getElementById("wishlist-add");
 const input=document.getElementById("wishlist-input");
 let container=document.getElementById("wishlist-container");
 let item="";
-let wish_list=[];
+
+let localData=JSON.parse(localStorage.getItem("list"));
+let wish_list=localData||[];
 let ID;
 
 //function to generate randomID, this can be further customised
@@ -21,7 +23,7 @@ e.preventDefault();
    }
    console.log(wish_list);
    rendering();
-   item="";
+   localStorage.setItem("list",JSON.stringify(wish_list));
    input.value="";
 })
 
@@ -31,7 +33,6 @@ container.addEventListener("click",(event)=>{
     event.preventDefault();
     let key=event.target.dataset.key;
     let delKey=event.target.dataset.delkey;
-    console.log(event.target.dataset);
     wish_list=wish_list.map((element)=>
     (element.ID==key)?{
         ...element,
@@ -39,9 +40,8 @@ container.addEventListener("click",(event)=>{
     }:element
     );
 
-
     wish_list=wish_list.filter(element=>element.ID!=delKey);
-
+    localStorage.setItem("list",JSON.stringify(wish_list));
     rendering();
 })
 
@@ -54,8 +54,8 @@ function rendering(){
         `<div>
             <input type="checkbox" id="${element.ID}" data-key=${element.ID} ${element.isChecked?"checked":""}>
             <label for="${element.ID}" data-key=${element.ID} class=${element.isChecked?"strike":""}>${element.item}</label>
-            <button  id="delete-button" ><i data-delKey=${element.ID} class="fa fa-trash">
-        </i></button></div>`)
+            <button  id="delete-button" ><i data-delkey=${element.ID} class="fa fa-trash">
+        </i></button></div>`).join(" ")
 }
 
 
