@@ -30,14 +30,17 @@ e.preventDefault();
 container.addEventListener("click",(event)=>{
     event.preventDefault();
     let key=event.target.dataset.key;
-    let delKey=event.target.dataset.delKey;
-    console.log(`key:${key} && delKey is:${delKey}`);
+    let delKey=event.target.dataset.delkey;
+    console.log(event.target.dataset);
     wish_list=wish_list.map((element)=>
     (element.ID==key)?{
         ...element,
         isChecked:!element.isChecked
     }:element
     );
+
+
+    wish_list=wish_list.filter(element=>element.ID!=delKey);
 
     rendering();
 })
@@ -51,7 +54,7 @@ function rendering(){
         `<div>
             <input type="checkbox" id="${element.ID}" data-key=${element.ID} ${element.isChecked?"checked":""}>
             <label for="${element.ID}" data-key=${element.ID} class=${element.isChecked?"strike":""}>${element.item}</label>
-            <button  id="delete-button" data-delKey=${element.ID}><i class="fa fa-trash">
+            <button  id="delete-button" ><i data-delKey=${element.ID} class="fa fa-trash">
         </i></button></div>`)
 }
 
