@@ -19,8 +19,13 @@ button:hover{
 #wishlist-container{
     border:2px solid black;
     margin-top:50px;
-    height:500px;
-    width: 400px;
+    min-height: 150px;
+    min-width:250px;
+    width: 60vw;
     border-radius: 20px;
     padding:20px;
+}
+
+.red{
+    background-color:red;
 }
